@@ -9,7 +9,7 @@ import '@babel/polyfill'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 import axios from 'axios'
-axios.defaults.baseURL = 'https://api.provaltec.cl'
+axios.defaults.baseURL = 'api.example'
 axios.defaults.headers.common['token'] = localStorage.getItem('token')
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
