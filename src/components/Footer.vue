@@ -1,23 +1,15 @@
 <template>
-  <v-footer
-    dark
-    padless
-    class="mt-16"
-  >
-    <v-card
-      class="flex"
-      flat
-      tile
-    >
+  <v-footer dark padless class="mt-16">
+    <v-card class="flex" flat tile>
       <v-card-title class="dark justify-center">
         <v-btn
-          v-for="(item,index) of rrss"
-          :key="index" 
+          v-for="(item, index) of rrss"
+          :key="index"
           class="mx-4"
           dark
           icon
           :href="item.Url"
-          target="_blank"          
+          target="_blank"
         >
           <v-icon size="24px">
             {{ item.icon }}
@@ -33,33 +25,32 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  data(){
-    return{
-      rrss: null
-    }
+  data() {
+    return {
+      rrss: null,
+    };
   },
- mounted()
-  /*
+  mounted() /*
     ----------------------------------------------------------------	
-        Funcion: mounted (propia de VUE)
-        Descripcion: Esta funcion se conecta a la API para obtener 
-        las Redes sociales de la empresa. Este dato esta en duro en
-        la API
+        Function: mounted (propia de VUE)
+        Description: This function connects to the API to get
+        the social networks of the company. This data is hard at
+        the api
     ----------------------------------------------------------------
    */
- {
-    axios.get('/api/menu/rrss')
-    .then(response =>{
-      this.rrss = response.data.results
-    })
-    .catch(error => console.log(error))
-  }
-}
+  {
+    axios
+      .get("/api/menu/rrss")
+      .then((response) => {
+        this.rrss = response.data.results;
+      })
+      .catch((error) => console.log(error));
+  },
+};
 </script>
 
 <style>
-
 </style>

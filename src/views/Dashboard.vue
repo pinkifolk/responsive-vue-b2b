@@ -1,11 +1,13 @@
 <!--
-    Vista del panel principal
+    Main Dashboard View
 -->
 <template>
   <v-app>
-      <Menu/> <!--componente que muestra el menu-->
+    <Menu />
+    <!--component that displays the menu-->
     <v-main class="mt-0 pt-0">
-      <HomeProducts/> <!--componente que muestra las pestañas verdes-->
+      <HomeProducts />
+      <!--component showing green tabs-->
     </v-main>
   </v-app>
 </template>
@@ -14,61 +16,59 @@
 import Menu from "../components/Menu.vue";
 import HomeProducts from "../components/Home-products.vue";
 export default {
-    components: { Menu, HomeProducts },
-    data() {
-      return{
-        events:['touchstart','mousemove'],
-        warningTimer:null
-      }
-    },
-    mounted(){
-      // Validamos si tiene un token para acceder a esta vista 
-      if(!localStorage.getItem('token')){
-        this.$router.push('/')
-      }
-      // ejecutamos un contador de inactividad
-      this.events.forEach( function (event){
-        window.addEventListener(event, this.resetTimer)
-      },this)
-      this.setTimers()
-    },
-    methods:{
-       /*
+  components: { Menu, HomeProducts },
+  data() {
+    return {
+      events: ["touchstart", "mousemove"],
+      warningTimer: null,
+    };
+  },
+  mounted() {
+    // We validate if you have a token to access this view
+    if (!localStorage.getItem("token")) {
+      this.$router.push("/");
+    }
+    // we run an inactivity counter
+    this.events.forEach(function (event) {
+      window.addEventListener(event, this.resetTimer);
+    }, this);
+    this.setTimers();
+  },
+  methods: {
+    /*
           ----------------------------------------------------------------	
-              Funcion: setTimers
-              Descripcion: Establece que a los 30 min de inactividad cierre
-              la sesion del usuario 
+              Function: setTimers
+              Description: Establishes that after 30 min of inactivity the user session closes 
           ----------------------------------------------------------------
         */
-      setTimers: function(){
-        this.warningTimer = setTimeout(this.logoutTimer, 30 * 60 * 1000)
-      },
-      /*
-          ----------------------------------------------------------------	
-              Funcion: logoutTimer
-              Descripcion: Se ejcuta una vez que se cumpla la funcion
-              setTimers. Lo que hace es eliminar el token del usuario y nos
-              redirecciona al logIn
-          ----------------------------------------------------------------
-        */
-      logoutTimer: function(){
-        localStorage.clear()
-        this.$router.push('/').catch(err => {})
-      },
-       /*
-          ----------------------------------------------------------------	
-              Funcion: resetTimer
-              Descripcion: Se ejecuta cuando se rompe el ciclo de inactividad
-          ----------------------------------------------------------------
-        */
-      resetTimer: function(){
-        clearTimeout(this.warningTimer)
-        this.setTimers()
-      },
+    setTimers: function () {
+      this.warningTimer = setTimeout(this.logoutTimer, 30 * 60 * 1000);
     },
-}
+    /*
+          ----------------------------------------------------------------	
+              Function: logoutTimer
+              Description: It is executed once the function is fulfilled
+              setTimers. What it does is remove the token from the user and we
+              redirects to logIn
+          ----------------------------------------------------------------
+        */
+    logoutTimer: function () {
+      localStorage.clear();
+      this.$router.push("/").catch((err) => {});
+    },
+    /*
+          ----------------------------------------------------------------	
+              Function: resetTimer
+              Description: Runs when the idle cycle is broken
+          ----------------------------------------------------------------
+        */
+    resetTimer: function () {
+      clearTimeout(this.warningTimer);
+      this.setTimers();
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

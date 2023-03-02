@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 /*
-  Rutas URL del sistema 
+  URL paths 
 */
 const routes = [
   {

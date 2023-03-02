@@ -1,67 +1,75 @@
 <template>
   <v-container fluid>
-      <v-layout wrap justify-center>
-          <v-flex xs12>
-              <v-card v-for="items in itemProduct" :key="items.id" class="mt-2 mb-5" color="green" height="80">
-                  <v-card-title class="white--text">
-                      <p class="body-2">{{items.title}}</p>
-                      <v-spacer></v-spacer>
-                      <router-link :to="{name:'productosinicio', params:{id:items.id}}" style="text-decoration:none">
-                        <v-btn icon fab color="white" @click="scrollTop">
-                            <v-icon>mdi-arrow-right</v-icon>
-                        </v-btn>                      
-                      </router-link>
-                  </v-card-title>
-              </v-card>
-          </v-flex>      
-      </v-layout>
+    <v-layout wrap justify-center>
+      <v-flex xs12>
+        <v-card
+          v-for="items in itemProduct"
+          :key="items.id"
+          class="mt-2 mb-5"
+          color="green"
+          height="80"
+        >
+          <v-card-title class="white--text">
+            <p class="body-2">{{ items.title }}</p>
+            <v-spacer></v-spacer>
+            <router-link
+              :to="{ name: 'productosinicio', params: { id: items.id } }"
+              style="text-decoration: none"
+            >
+              <v-btn icon fab color="white" @click="scrollTop">
+                <v-icon>mdi-arrow-right</v-icon>
+              </v-btn>
+            </router-link>
+          </v-card-title>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-    data: () =>({
-        itemProduct:[] // arreglo que muestra las pestañas verdes
-    }),
-    mounted ()
-    /*
+  data: () => ({
+    itemProduct: [], // array showing green tabs
+  }),
+  mounted() /*
         ----------------------------------------------------------------	
-            Funcion: mounted (propia de VUE)
-            Descripcion: Esta funcion se conecta a la API para obtener 
-            los el menu de pestañas verdes.
+            Function: mounted (VUE)
+            Description: This function connects to the API to get
+            the green tabs menu.
         ----------------------------------------------------------------
     */
-    {
-        axios.get('/api/menu/home')
-        .then(response =>{
-            this.itemProduct = response.data.results
-        })
-        .catch(error => console.log(error))
-    },
-    
-    methods:{
-        /*
+  {
+    axios
+      .get("/api/menu/home")
+      .then((response) => {
+        this.itemProduct = response.data.results;
+      })
+      .catch((error) => console.log(error));
+  },
+
+  methods: {
+    /*
       ----------------------------------------------------------------	
-          Funcion: scrollTop
-          Descripcion: La funcion scrollTop nos permite mantener el
-          scroll siempre en 0 al cargar una pagina.
-          Corrige: Fue creado para corregir un problema con el scroll,
-          al momento de navegar en el sitio, el scroll se quedaba 
-          pegado en la posicion antes visitada.
+          Function: scrollTop
+          Description: The scrollTop function allows us to keep the
+          scroll always at 0 when loading a page.
+          Fixes: It was created to fix a problem with scrolling,
+          when browsing the site, the scroll stayed
+          pasted in the previously visited position.
       ----------------------------------------------------------------
       */
-        scrollTop () {
-            setTimeout(() => {
-              window.scrollTo({
-                  top: 0
-              })  
-            })
-        }
-    }    
-}
+    scrollTop() {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+        });
+      });
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

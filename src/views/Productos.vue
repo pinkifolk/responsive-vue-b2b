@@ -1,33 +1,32 @@
 <!--
-    Vista de de la familia de productos 
+    Product family view
 -->
 <template>
-    <v-app>
-        <Menu/> <!--componente que muestra el menu-->
-        <v-main class="pt-0">
-            <v-container>
-                <Products/><!--componente que muestra el detalle de las familias de productos-->
-            </v-container>
-        </v-main>
-    </v-app>
+  <v-app>
+    <Menu />
+    <!--component that displays the menu-->
+    <v-main class="pt-0">
+      <v-container>
+        <Products /><!--component that shows the detail of product families-->
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Products from '../components/Products.vue'
-import Menu from '../components/Menu.vue'
+import Products from "../components/Products.vue";
+import Menu from "../components/Menu.vue";
 
 export default {
   components: { Products, Menu },
-  mounted(){
-      // Validamos si tiene un token para acceder a esta vista 
-      if(!localStorage.getItem('token')){
-        this.$router.push('/')
-      }
-    },
-
-}
+  mounted() {
+    // We validate if you have a token to access this view
+    if (!localStorage.getItem("token")) {
+      this.$router.push("/");
+    }
+  },
+};
 </script>
 
 <style>
-
 </style>
