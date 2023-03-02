@@ -20,7 +20,7 @@ And change in the get method axios
 
 Also you need change the information of menu component
 
-##Documentation
+## Documentation
 
 Vue Js
 [https://vuejs.org/guide/introduction.html](https://vuejs.org/guide/introduction.html)
